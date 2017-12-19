@@ -1,0 +1,27 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Kario</title><meta name="description" content="Personal blog,if you can find something in my site that could help you,I'd be happy."/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/><meta name="theme-color" content="#ffffff"/><link rel="stylesheet" href="/css/pure-min.css">
+<link rel="stylesheet" href="/css/grids-responsive-min.css">
+<link rel="stylesheet" href="/css/style.css"></head><body><div id="layout" class="pure-g"><div class="sidebar pure-u-1 pure-u-md-1-4"><div class="header"><h1 class="brand-title"><a href="https://github.com/initiate-spinach" title="Have a visit to my github ?" target="_blank">Kario</a></h1><h2 class="brand-tagline">We're only getting older...</h2><nav class="nav"><ul class="nav-list"><li class="nav-item"><a href="/" class="pure-button">home</a></li><li class="nav-item"><a href="/archives" class="pure-button">archives</a></li></ul></nav></div></div><div class="content pure-u-1 pure-u-md-3-4"><div class="posts"><div class="post"><div class="post-header"><h2 class="post-title">关于lang属性的取值</h2><p class="post-meta"><span class="post-date"><i class="icon-clock"></i>2017-12-19</span><span class="post-categories"><i class="icon-book"></i><a href="/categories/HTML5/" class="post-category">HTML5</a></span><span class="post-tags"><i class="icon-tags"></i><a href="/tags/tech/" class="post-tag">tech</a><a href="/tags/research/" class="post-tag">research</a></span></p></div><div class="post-content"><p>相信很多人都对于HTML中lang属性的值有一番研究，网页上也有很多相关的讨论。那么到底哪一种选择才是正确的呢？ <a id="more"></a></p>
+<blockquote>
+<p>腾讯和淘宝都是zh-CN，iphone、Mozilla和Google的developer的中文官网都是zh-CN，优酷和百度则没有添加，支付宝首页更是索性给出了en的答案。</p>
+</blockquote>
+<p>我在百度查了下，发现在知乎上有一个<a href="https://www.zhihu.com/question/20797118" target="_blank" rel="noopener">相关的问答</a>，但是杂乱无章，各方持有不同的解读，看的人一头雾水。于是我去了W3C官网，希望找到一个合适的答案。  </p>
+<p><strong>1.</strong> 首先，W3C<strong>确定</strong>语言标签语法应该遵循IETF的<a href="http://www.rfc-editor.org/rfc/bcp/bcp47.txt" target="_blank" rel="noopener">BCP-47</a>文件，它代表着一系列的RFC文件，其中，与此相关的是RFC-5646。<br><strong>2.</strong> 其次，过往我们使用ISO标准去选择——ISO 639-1 two-letter language code和ISO 639-2 three-letter language code，现在W3C<strong>推荐</strong>在<a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry" target="_blank" rel="noopener">IANA Language Subtag Registry</a>中查询、使用。<br><strong>3.</strong> W3C还<strong>强调</strong>了：<strong>“The golden rule when creating language tags is to keep the tag as short as possible.”</strong> 也就是说，越简洁越好。  </p>
+<p>在W3C的问题板块，我找到了一个<a href="https://www.w3.org/International/questions/qa-lang-2or3" target="_blank" rel="noopener">Should I use two-letter or three-letter ISO language codes in language tags?</a><br>对此W3C的回应是neither，推荐使用IANA中的命名。在另一篇<a href="https://www.w3.org/International/articles/language-tags/" target="_blank" rel="noopener">文章</a>中，明确给出了这样一句话：<strong>“Avoid region, script or other subtags except where they add useful distinguishing information. For instance, use ja for Japanese and not ja-JP, unless there is a particular reason that you need to say that this is Japanese as spoken in Japan, rather than elsewhere.”</strong>  简单来说，就是如果没有特殊原因，则不应该添加<strong>region</strong>等变量；上文中以日语举例，而以简体中文（普通话）在IANA中是这样定义的：</p>
+<blockquote>
+<p>%%<br>Type: language<br>Subtag: cmn<br>Description: Mandarin Chinese<br>Added: 2009-07-29<br>Macrolanguage: zh<br>%%</p>
+</blockquote>
+<p>BCP-47中的section 2.2.2还提到了：The language subtag ‘zh’ can still be used without an extended language subtag to label a resource as some unspecified variety of Chinese, while the primary language subtag (‘gan’, ‘yue’, ‘cmn’) is preferred to using the extended language form (“zh-gan”, “zh-yue”, “zh-cmn”).    </p>
+<p><strong>所以，简体中文使用cmn是最好的选择。</strong>  </p>
+<p>另有几点需要注意：  </p>
+<ul>
+<li>At all times, language tags and their subtags, including private use and extensions, are to be treated as case insensitive: there exist conventions for the capitalization of some of the subtags, but these MUST NOT be taken to carry meaning.<br>即不区分大小写。</li>
+<li>强烈建议各位去查阅英文原文档，从而对于lang的取值有一个切身的体会。相信大家会好好利用CTRL+F这个快捷键和你的翻译工具。  </li>
+</ul>
+<p>关于简繁体的问题，如果你需要参考的话：  </p>
+<blockquote>
+<p>%%<br>Type: redundant<br>Tag: zh-cmn-Hans<br>Description: Mandarin Chinese (Simplified)<br>Added: 2005-07-15<br>Deprecated: 2009-07-29<br>Preferred-Value: cmn-Hans<br>%%<br>Type: redundant<br>Tag: zh-cmn-Hant<br>Description: Mandarin Chinese (Traditional)<br>Added: 2005-07-15<br>Deprecated: 2009-07-29<br>Preferred-Value: cmn-Hant<br>%%  </p>
+</blockquote>
+<p>当然，推广一致的规范一直是世界性的难题，希望各位都能贡献出自己的一份力量。</p>
+</div><nav id="post-nav"><a id="post-nav-older" href="/2017-12-17/后日谈（一）.html" class="post-nav-link-wrap"><strong class="post-nav-caption">Older</strong><div class="post-nav-title">后日谈（一）</div></a></nav></div></div><div class="footer"><div class="copyright">&copy; 2017 Kario Wang.
+Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+with <a href="https://purecss.io" target="_blank">pure</a>.</div></div></div><script src="/js/script.js"></script></div></body></html>

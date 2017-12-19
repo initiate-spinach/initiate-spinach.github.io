@@ -97,10 +97,17 @@ a:focus {
     line-height: 1.8em;
 }
 
-.post-date,
+.post-date{
+    display: inline-block;
+    margin-right: 3em;
+}
 .post-categories,
 .post-tags {
     margin-right: 2em;
+}
+.post-category:hover,
+.post-tag:hover {
+	text-decoration: none;
 }
 .post-category,
 .post-tag {
@@ -223,7 +230,7 @@ a:focus {
 }
 .post-nav-link-wrap:hover {
     text-decoration: none;
-    color: #555;
+    color: forestgreen;
 }
 
 
